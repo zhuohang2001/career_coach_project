@@ -10,7 +10,7 @@ def extract_restaurant_details():
     extracted_data = []
     restaurants = restaurant_data[0]["restaurants"]
     for record in restaurants:  
-        details = record["restaurant"]  # Extract actual restaurant data
+        details = record["restaurant"] 
         location = details.get("location", {})
         user_rating = details.get("user_rating", {})
 

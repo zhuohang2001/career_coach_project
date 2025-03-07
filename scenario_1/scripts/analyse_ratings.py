@@ -3,13 +3,13 @@ from config import RESTAURANT_CSV, RATING_THRESHOLDS
 
 def categorize_rating(rating):
     """Categorize rating based on predefined thresholds."""
-    if rating is None:  # Handle missing values
+    if rating is None: 
         return "NA"
     
     try:
-        rating = float(rating)  # Convert to float safely
+        rating = float(rating)
     except ValueError:
-        return "NA"  # Handle unexpected values
+        return "NA" 
 
     for category, threshold in RATING_THRESHOLDS.items():
         if rating >= threshold:
