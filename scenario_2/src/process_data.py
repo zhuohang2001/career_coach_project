@@ -26,7 +26,20 @@ class CarparkDataProcessor:
 
     @staticmethod
     def merge_datasets(static_df, realtime_df):
-        """Merges static and real-time datasets on 'carpark_number' while handling missing data."""
+        """
+        Merges static car park dataset with real-time availability data.
+
+        - Performs a **left join** to ensure that all static car parks are retained.
+        - If real-time data is missing, it indicates the car park was not updated in the latest API call.
+        - Ensures that `carpark_number` from the API aligns with `car_park_no` from static data.
+
+        Args:
+            static_df (pd.DataFrame): Static car park details.
+            realtime_df (pd.DataFrame): Real-time availability data.
+
+        Returns:
+            pd.DataFrame: Merged dataset containing both static and real-time details.
+        """
 
         # Standardize column names
         static_df.rename(columns={"car_park_no": "carpark_number"}, inplace=True)

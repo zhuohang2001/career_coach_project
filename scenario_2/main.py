@@ -9,7 +9,19 @@ JSON_FILE = "data/carpark-availability.json"
 API_URL = "https://api.data.gov.sg/v1/transport/carpark-availability"  # If using API
 
 def main():
-    """Loads, processes, and runs the carpark availability CLI application."""
+    """
+    Entry point for the Carpark Availability CLI application.
+
+    - Loads both static and real-time car park datasets.
+    - Processes the data by merging and formatting.
+    - Parses command-line arguments to allow searching by carpark number or address.
+    
+    Exits gracefully if data loading fails.
+
+    Usage:
+        python main.py --carpark A1
+        python main.py --address "Blk 123"
+    """
 
     # Load datasets
     static_data = CarparkDataLoader.load_csv(CSV_FILE)

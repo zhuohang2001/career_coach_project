@@ -21,7 +21,19 @@ class CarparkDataLoader:
 
     @staticmethod
     def load_json(json_path=None, api_url=None):
-        """Loads real-time parking data from JSON file or API with improved error handling."""
+        """
+        Fetches real-time car park availability data from the provided API.
+
+        - Sends a GET request to the API.
+        - Extracts only the latest available `carpark_data` entry.
+        - If the request fails, returns None.
+
+        Args:
+            api_url (str): API endpoint URL.
+
+        Returns:
+            list[dict] | None: JSON list of car park data, or None if the request fails.
+        """
         try:
             if api_url:
                 response = requests.get(api_url, timeout=10)
