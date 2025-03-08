@@ -23,17 +23,25 @@ else:
 def home():
     return jsonify({"message": "Carpark Availability API is running!"})
 
-@app.route("/carpark/<carpark_id>", methods=["GET"])
-def get_carpark_details(carpark_id):
-    """Fetches carpark details by carpark number."""
+@app.route("/get-availability", methods=["GET"])
+def get_availability():
+    """Fetch carpark details by carpark ID."""
+    carpark_id = request.args.get("carpark_id")
+    if not carpark_id:
+        return jsonify({"error": "Missing carpark_id"}), 400
+
     if merged_data is None:
         return jsonify({"error": "Data not available"}), 500
-    
+
     result = CarparkCLI.search_by_carpark(merged_data, carpark_id)
+    print("res: ", result)
+    if not result:
+        return jsonify({"error": "Car park not found"}), 404
+
     return jsonify(result)
 
-@app.route("/search", methods=["GET"])
-def search_by_address():
+@app.route("/get-availability/search", methods=["GET"])
+def get_availability_by_address():
     """Search carparks by address keyword."""
     address_keyword = request.args.get("address")
     if not address_keyword:
@@ -43,6 +51,10 @@ def search_by_address():
         return jsonify({"error": "Data not available"}), 500
 
     result = CarparkCLI.search_by_address(merged_data, address_keyword)
+
+    if not result:
+        return jsonify({"error": "No matching carparks found"}), 404
+
     return jsonify(result)
 
 if __name__ == "__main__":

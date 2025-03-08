@@ -13,6 +13,10 @@ class CarparkCLI:
             print(result.to_string(index=False))
             last_update = result["last_updated"].values[0] if "last_updated" in result.columns else "Unknown"
             print("\nLast Updated:", last_update)
+            return {
+                "result": result.to_dict(orient="records"),
+                "last_update": last_update
+            }
         else:
             print("No carpark found for the given number.")
 
@@ -25,6 +29,10 @@ class CarparkCLI:
             print(filtered_df.to_string(index=False))
             last_update = filtered_df["last_updated"].values[0] if "last_updated" in filtered_df.columns else "Unknown"
             print("\nLast Updated:", last_update)
+            return {
+                "result": filtered_df.to_dict(orient="records"),
+                "last_update": last_update
+            }
         else:
             print("No matching carparks found.")
 
