@@ -4,8 +4,8 @@
 
 This project contains two scenarios, **Scenario 1** and **Scenario 2**, each implementing different data processing pipelines using cloud services.
 
-- **Scenario 1 (AWS-based):** Extracts and processes restaurant event data, transforming JSON files into structured formats.
-- **Scenario 2 (Azure-based):** Processes and updates car park availability information, integrating real-time and static datasets.
+- **Scenario 1:** Extracts and processes restaurant event data, transforming JSON files into structured formats.
+- **Scenario 2:** Processes and updates car park availability information, integrating real-time and static datasets.
 
 ---
 
